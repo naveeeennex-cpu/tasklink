@@ -217,6 +217,29 @@ class _OtpVerificationScreenState extends ConsumerState<OtpVerificationScreen> {
                         ),
                       ),
               ),
+              const SizedBox(height: LokalSpacing.md),
+              Center(
+                child: TextButton(
+                  onPressed: () => context.go(LokalRoutes.login),
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Already confirmed?  ',
+                      style: LokalTypography.bodyMd.copyWith(
+                        color: LokalColors.onSurfaceVariant,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Log in instead',
+                          style: LokalTypography.bodyMd.copyWith(
+                            color: LokalColors.primary,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
