@@ -31,15 +31,24 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
-    # CORS — permissive by default so the Flutter app + any browser
-    # test can hit the deployed backend without friction. Lock this
-    # down to specific origins before shipping to production.
+    # CORS — permissive during pre-launch so Flutter web (localhost:*)
+    # and any smoke-test curl can hit the backend without friction.
+    #
+    # `allow_credentials=False` is required when `allow_origins=["*"]`
+    # (CORS spec forbids wildcard + credentials). We use bearer tokens
+    # in the Authorization header, not cookies, so this is fine.
+    #
+    # Lock this down by setting APP_CORS_ORIGINS to a comma-separated
+    # allowlist and flipping allow_credentials back to True before
+    # shipping to the public Play Store.
+    allow_all = (
+        settings.app_env != "production"
+        or "*" in settings.cors_origins_list
+    )
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.cors_origins_list
-        if settings.app_env == "production"
-        else ["*"],
-        allow_credentials=True,
+        allow_origins=["*"] if allow_all else settings.cors_origins_list,
+        allow_credentials=False if allow_all else True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
