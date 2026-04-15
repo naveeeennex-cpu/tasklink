@@ -7,8 +7,20 @@ import '../../../core/models/enums.dart';
 import '../../../core/models/user_profile.dart';
 import '../../../core/supabase_init.dart';
 
-/// Authentication + current user state.
-/// `null` user means logged out.
+/// Outcome of a signup attempt. Drives how the UI routes next.
+enum SignupOutcome {
+  /// Email confirmation is OFF in Supabase — user is already logged in,
+  /// straight to mode selection.
+  loggedIn,
+
+  /// Email confirmation is ON — Supabase sent a 6-digit OTP. The UI
+  /// must navigate to the OTP verification screen.
+  otpSent,
+
+  /// Signup call failed. Check `AuthState.error` for details.
+  error,
+}
+
 @immutable
 class AuthState {
   const AuthState({
@@ -16,12 +28,18 @@ class AuthState {
     this.loading = false,
     this.error,
     this.isNewUser = false,
+    this.pendingEmail,
   });
 
   final UserProfile? user;
   final bool loading;
   final String? error;
   final bool isNewUser;
+
+  /// Email address awaiting OTP verification — kept between the signup
+  /// screen and the OTP verification screen so the user only types it
+  /// once.
+  final String? pendingEmail;
 
   bool get isAuthenticated => user != null;
 
@@ -30,14 +48,19 @@ class AuthState {
     bool? loading,
     String? error,
     bool? isNewUser,
+    String? pendingEmail,
     bool clearError = false,
     bool clearUser = false,
+    bool clearPendingEmail = false,
   }) =>
       AuthState(
         user: clearUser ? null : (user ?? this.user),
         loading: loading ?? this.loading,
         error: clearError ? null : (error ?? this.error),
         isNewUser: isNewUser ?? this.isNewUser,
+        pendingEmail: clearPendingEmail
+            ? null
+            : (pendingEmail ?? this.pendingEmail),
       );
 }
 
@@ -71,8 +94,6 @@ class AuthController extends Notifier<AuthState> {
       final data = await ApiClient.instance.getMe();
       state = state.copyWith(user: UserProfile.fromJson(data), clearError: true);
     } catch (_) {
-      // Backend may not be reachable yet in local dev — fall back to the
-      // Supabase user object so the app still routes correctly.
       final sb = _sb;
       final u = sb?.auth.currentUser;
       if (u != null) {
@@ -110,7 +131,17 @@ class AuthController extends Notifier<AuthState> {
     }
   }
 
-  Future<void> signupWithEmail({
+  /// Sign up with email/password.
+  ///
+  /// Returns:
+  /// * [SignupOutcome.loggedIn] when Supabase's "Confirm email" is OFF —
+  ///   the user is signed in immediately and routing should jump to the
+  ///   mode selection screen.
+  /// * [SignupOutcome.otpSent] when confirmation is ON — Supabase has
+  ///   emailed a 6-digit code. Routing should show the OTP screen,
+  ///   which then calls [verifyOtp].
+  /// * [SignupOutcome.error] on failure.
+  Future<SignupOutcome> signupWithEmail({
     required String fullName,
     required String email,
     required String phone,
@@ -119,21 +150,71 @@ class AuthController extends Notifier<AuthState> {
     final sb = _sb;
     if (sb == null) {
       state = state.copyWith(error: 'Supabase not configured. See app/.env');
-      return;
+      return SignupOutcome.error;
     }
     state = state.copyWith(loading: true, clearError: true);
     try {
-      await sb.auth.signUp(
+      final response = await sb.auth.signUp(
         email: email,
         password: password,
         data: {'full_name': fullName, 'phone': phone},
       );
-      await _loadProfile();
-      state = state.copyWith(loading: false, isNewUser: true);
+      if (response.session != null) {
+        await _loadProfile();
+        state = state.copyWith(loading: false, isNewUser: true);
+        return SignupOutcome.loggedIn;
+      }
+      // No session → awaiting email OTP confirmation.
+      state = state.copyWith(
+        loading: false,
+        isNewUser: true,
+        pendingEmail: email,
+      );
+      return SignupOutcome.otpSent;
     } on AuthException catch (e) {
       state = state.copyWith(loading: false, error: e.message);
+      return SignupOutcome.error;
     } catch (e) {
       state = state.copyWith(loading: false, error: e.toString());
+      return SignupOutcome.error;
+    }
+  }
+
+  /// Verify the 6-digit OTP that Supabase emailed after [signupWithEmail].
+  Future<bool> verifyOtp({
+    required String email,
+    required String token,
+  }) async {
+    final sb = _sb;
+    if (sb == null) return false;
+    state = state.copyWith(loading: true, clearError: true);
+    try {
+      await sb.auth.verifyOTP(
+        email: email,
+        token: token,
+        type: OtpType.signup,
+      );
+      await _loadProfile();
+      state = state.copyWith(loading: false, clearPendingEmail: true);
+      return true;
+    } on AuthException catch (e) {
+      state = state.copyWith(loading: false, error: e.message);
+      return false;
+    } catch (e) {
+      state = state.copyWith(loading: false, error: e.toString());
+      return false;
+    }
+  }
+
+  /// Resend the signup OTP to the pending email.
+  Future<void> resendSignupOtp() async {
+    final sb = _sb;
+    final email = state.pendingEmail;
+    if (sb == null || email == null) return;
+    try {
+      await sb.auth.resend(type: OtpType.signup, email: email);
+    } catch (e) {
+      state = state.copyWith(error: e.toString());
     }
   }
 
@@ -180,7 +261,6 @@ class AuthController extends Notifier<AuthState> {
   void setActiveMode(UserMode mode) {
     if (state.user == null) return;
     state = state.copyWith(user: state.user!.copyWith(activeMode: mode));
-    // Fire-and-forget server update.
     ApiClient.instance.setActiveMode(mode.value).catchError((_) {});
   }
 

@@ -5,6 +5,7 @@ import '../features/auth/controller/auth_controller.dart';
 import '../features/auth/screens/forgot_password_screen.dart';
 import '../features/auth/screens/get_started_screen.dart';
 import '../features/auth/screens/login_screen.dart';
+import '../features/auth/screens/otp_verification_screen.dart';
 import '../features/auth/screens/signup_screen.dart';
 import '../features/auth/screens/splash_screen.dart';
 import '../features/auth/screens/welcome_screen.dart';
@@ -23,6 +24,7 @@ class LokalRoutes {
   static const welcome = '/welcome';
   static const login = '/login';
   static const signup = '/signup';
+  static const verifyOtp = '/verify-otp';
   static const forgot = '/forgot-password';
   static const modeSelect = '/mode';
   static const customerHome = '/home/customer';
@@ -45,6 +47,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         LokalRoutes.welcome,
         LokalRoutes.login,
         LokalRoutes.signup,
+        LokalRoutes.verifyOtp,
         LokalRoutes.forgot,
       }.contains(loc);
 
@@ -65,6 +68,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: LokalRoutes.welcome, builder: (_, __) => const WelcomeScreen()),
       GoRoute(path: LokalRoutes.login, builder: (_, __) => const LoginScreen()),
       GoRoute(path: LokalRoutes.signup, builder: (_, __) => const SignupScreen()),
+      GoRoute(path: LokalRoutes.verifyOtp, builder: (_, __) => const OtpVerificationScreen()),
       GoRoute(path: LokalRoutes.forgot, builder: (_, __) => const ForgotPasswordScreen()),
       GoRoute(path: LokalRoutes.modeSelect, builder: (_, __) => const ModeSelectionScreen()),
       GoRoute(path: LokalRoutes.customerHome, builder: (_, __) => const CustomerHomeScreen()),
