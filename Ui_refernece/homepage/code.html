@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "inverse-surface": "#2d3133",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed": "#dbe1ff",
+                    "secondary-fixed": "#dee3ec",
+                    "on-error-container": "#93000a",
+                    "background": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error": "#ffffff",
+                    "secondary": "#595f66",
+                    "surface-bright": "#f7f9fb",
+                    "secondary-container": "#dee3ec",
+                    "on-secondary-fixed": "#161c22",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#434655",
+                    "on-primary-container": "#eeefff",
+                    "primary": "#004ac6",
+                    "on-surface": "#191c1e",
+                    "on-secondary-fixed-variant": "#42474e",
+                    "surface-tint": "#0053db",
+                    "surface-container": "#eceef0",
+                    "secondary-fixed-dim": "#c2c7cf",
+                    "surface": "#f7f9fb",
+                    "tertiary-container": "#bc4800",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#360f00",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#ffede6",
+                    "on-primary-fixed": "#00174b",
+                    "primary-container": "#2563eb",
+                    "tertiary": "#943700",
+                    "tertiary-fixed": "#ffdbcd",
+                    "outline": "#737686",
+                    "on-secondary-container": "#5f656c",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "outline-variant": "#c3c6d7",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-dim": "#d8dadc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl shadow-sm flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a friendly man with a warm smile in a brightly lit professional setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUeLhPWqUxDnVTpOi5u0FHLn5ecdIDhjxaw_Wl_1piq2FGYzze130RSMYYlQVmN2-63nFfBuBon8MPPuVOZ8YHCH3O25BHmVTherxMe-6WX__jXU7itpr41XnlPAUCQM7GYDM0Nx1O09HpKquZBkoSqAuwAsZrIh8fRrNfDlKXMmzIYyEQC4ytfnjfYSxXR1xR1PfvR17uXNPiromtBjV9v3YGmSuFrMtHKmQLIZvvm9WC4SEGnjmw_2ipKFZO-zezTThyGCD__iM"/>
+</div>
+</div>
+<div class="flex items-center gap-1 font-headline font-bold text-on-surface text-sm">
+<span>Chennai, T. Nagar</span>
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</div>
+<div class="bg-surface-container-high p-1 rounded-full flex gap-1 items-center">
+<button class="bg-primary-container text-on-primary px-4 py-1.5 rounded-full text-xs font-bold transition-all">Consumer</button>
+<button class="text-on-surface-variant px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-surface-container transition-all">Earner</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 space-y-8">
+<!-- Hero Section -->
+<section class="space-y-6">
+<div class="space-y-2">
+<h1 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface leading-tight">
+                    LOKAL
+                </h1>
+<p class="text-on-surface-variant font-medium">Helping hands, just around the corner.</p>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary-container">search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border-none py-5 pl-14 pr-6 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] focus:ring-2 focus:ring-primary/20 transition-all text-sm font-medium placeholder:text-on-surface-variant/60" placeholder="What can your community help you with today?" type="text"/>
+</div>
+</section>
+<!-- Bento Grid Services -->
+<section class="grid grid-cols-2 grid-rows-3 gap-4 h-[520px]">
+<!-- Instant Ride Share -->
+<div class="col-span-1 row-span-1 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 flex flex-col justify-between group cursor-pointer hover:shadow-lg transition-all duration-300">
+<div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="car_tag">car_tag</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface text-base">Instant Ride Share</h3>
+<p class="text-[11px] text-on-surface-variant font-medium">Nearby commuters</p>
+</div>
+</div>
+<!-- Express Grocery -->
+<div class="col-span-1 row-span-1 bg-[#F1F6FF] rounded-xl p-5 flex flex-col justify-between relative group cursor-pointer hover:shadow-lg transition-all duration-300">
+<div class="absolute top-4 right-4 bg-tertiary-container text-[9px] font-bold text-white px-2 py-0.5 rounded-full uppercase tracking-wider">Fast Delivery</div>
+<div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface text-base">Express Grocery</h3>
+<p class="text-[11px] text-on-surface-variant font-medium">Under 15 mins</p>
+</div>
+</div>
+<!-- Walk & Talk -->
+<div class="col-span-1 row-span-2 bg-[#F1F6FF] rounded-xl overflow-hidden flex flex-col relative group cursor-pointer hover:shadow-lg transition-all duration-300">
+<img class="h-full w-full object-cover absolute inset-0 opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="Two cheerful friends walking through a sun-dappled urban park, carrying shopping bags and laughing together" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLQ_yw0lPuMs4Fexjz6ljSuQ-tqOlRnWw3Ml8NDFuEU5CPRgWH2zEyFgpwo01cE1_y19s5ajygg3dxbJGepQcVFuC7rROvBCs3OMSYnMfwr1jbxYq0Kes42yr2MoB47Tw3Nk3cR1zKMI2IojapKnNGC_iUTcgdznNJw_EsAM1VJd7OT2XCbuTkWwpmPrnY_iGFHyxvEUCLXe-OV7eqbkhaZitSlGDe1coazjWESW6OgxYdpspQVuUhibSKWR54fuBg4VPzU6VxoCc"/>
+<div class="relative p-5 h-full flex flex-col justify-between bg-gradient-to-t from-[#F1F6FF] via-transparent">
+<div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="group">group</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface text-base">Walk &amp; Talk</h3>
+<p class="text-[11px] text-on-surface-variant font-medium">Shopping buddy &amp; security</p>
+</div>
+</div>
+</div>
+<!-- Expert Services -->
+<div class="col-span-1 row-span-1 bg-[#F1F6FF] rounded-xl p-5 flex flex-col justify-between group cursor-pointer hover:shadow-lg transition-all duration-300">
+<div class="flex gap-2">
+<div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="code">code</span>
+</div>
+<div class="bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="settings">settings</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface text-base">Expert Services</h3>
+<p class="text-[11px] text-on-surface-variant font-medium">Web Dev, Repairs &amp; More</p>
+</div>
+</div>
+<!-- Bonus Space/Utility -->
+<div class="col-span-1 row-span-1 bg-primary-container rounded-xl p-5 flex flex-col justify-center items-center text-center text-white group cursor-pointer hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-3xl mb-2" data-icon="add_circle">add_circle</span>
+<span class="text-xs font-bold uppercase tracking-widest">Post a Gig</span>
+</div>
+</section>
+<!-- Featured Local Shops -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h2 class="font-headline text-xl font-bold text-on-surface">Featured Local Shops</h2>
+<button class="text-primary text-xs font-bold uppercase tracking-wider">See All</button>
+</div>
+<div class="flex gap-6 overflow-x-auto no-scrollbar pb-4 -mx-6 px-6">
+<div class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-full bg-white shadow-md p-1 border-2 border-surface-container">
+<img class="w-full h-full rounded-full object-cover" data-alt="Vibrant close-up of fresh organic produce at a farmers market" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFWyISj70Jpu7y5LKtYZtCL7aQt9VNIHTf0V9s7W5pU8Qo9e4Z-ThPeeHh6tQ9k51u2v5ysjEY9RZP7Q72Q4Rfs8Ki5uRAa8my5hedt7L6Cs1dPrhdiAy-8rJrDofTfhdZkxJAU6OuprnMavMPmjkwE7B4_61Jt_J8GWZmFi85LsMmmTTImOxOHBlp69DwGWDJDerswHXYqkFDjB9U3WQ7DtZVmdaQhHKdhj5Tm_hBPI0weRpW5lpZuTNuFQNSltqC8GHFA3CV6L0"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant text-center">Grover's</span>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-full bg-white shadow-md p-1 border-2 border-transparent">
+<img class="w-full h-full rounded-full object-cover" data-alt="Warm artisanal bakery interior with fresh loaves and soft golden lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRW5WDiHVSQZk6thYw_erFbz_nQYtdGtZ6oInE2DOyo0OBnf6Gu54RL_zAanhY5-XEO6wlmqJDZEI96W0XvehZ2SFmlW7Fv0zdmCrHqcsYAjNIxCvn7gFaM2GhoYekhu8WmGynorMBAe9Y75T5pbujLsTxR-trkRzntJMnEYopgvDDwTJAsHkfVQwdnWqQ8zPPFA2sp0PuFEHYoyzS6Tnmx1TwKyOJ9r9MaWamo06zJrm7XgsjIIhgcQe_9qTb8hUIkHYKf5AQJ44"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant text-center">Crust &amp; Crumb</span>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-full bg-white shadow-md p-1 border-2 border-transparent">
+<img class="w-full h-full rounded-full object-cover" data-alt="Modern minimalist boutique clothing store with neat displays and natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUdMu4KROBd-6LBnhMPhIEQLQX-cgbZRXoQQVScULuTgFFtlD8WDNKkrVl6tR1U-wBxDFc8iszZt8OsE_Hjr1m0tIQTe2i9zzOMyQA1HG0mpA7j9jZs4vRkCDZuiS5vkVvZv8XtEZFVl10aUdyvQrN2GC2bGFNYhJ4TK9ubVDH5SiIWTanbQ2BssdC0cwrHgrpIf0TvAk5XVsx37wuiHc1YyrMcFDaMFTO-8t-0ftZvUVLLdxTRhe6fhPm0k6ad5hCws0eOuFNr64"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant text-center">The Thread</span>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-full bg-white shadow-md p-1 border-2 border-transparent">
+<img class="w-full h-full rounded-full object-cover" data-alt="Sleek electronics store with glowing displays and high-tech aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXx8MHq2KIEWDYLtCarTQQ6cKwQ_Wtl-Z-PL0-00mDv2rlJSCyXhb9u8crKO3VEn9UNy2Gxr-trQy0jK8Itfs71_h6-FQtaqK9RrB3-0XShnlIXMZCJvn1OfoyZqE1g_i91tvp5eDtuza6l2AIG-_2rpHAdXrUg5bRNN3i271QMJJHAC71O3SVNul7yHGn6kl-HTguZMoPimLM8z9kKY-FfET640i-PFKXyTfn_N1XLoigZd1i_IKPSbR0fWCA5UoP1lfQpLIP8vE"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant text-center">Byte Shop</span>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[80px]">
+<div class="w-16 h-16 rounded-full bg-white shadow-md p-1 border-2 border-transparent">
+<img class="w-full h-full rounded-full object-cover" data-alt="Upscale furniture showroom with designer pieces and architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIt8380HKskFQEnO0QZ0ntWkOAZ3GNDdPMbKFkiWSZhvtxJUW-OL3Yuj3kvFlmTveOJnAG9IxlSiTloqZysCaje4r6yS6cwpPa9fm7FXqB5yRI8yFhk8VGrwmSzZ6PTHMB_lgwE9cPnslyt0dol0M_Obt9UMia_4jwWa6guXSDU9JCBLiG1fjepJNvZ3LtBN7MZ_5gHRIyfmRF4PoNrHwNedzfaFf6uEb2ipCVjBVPnd7P5_821ZJX6yPzNQZyAp8S6foCFgMEnsc"/>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant text-center">Nook</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Notification Pill -->
+<div class="fixed bottom-28 left-0 w-full flex justify-center px-6 pointer-events-none z-40">
+<div class="bg-on-background/90 text-white backdrop-blur-md px-6 py-3 rounded-full flex items-center gap-3 shadow-xl pointer-events-auto max-w-sm">
+<div class="w-2 h-2 bg-primary-container rounded-full animate-pulse"></div>
+<p class="text-xs font-semibold">3 bids received for your Grocery request</p>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-8 pt-2 bg-white/70 backdrop-blur-xl z-50 rounded-t-xl shadow-[0_-8px_24px_rgba(0,0,0,0.06)]">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-blue-600 text-white rounded-full p-3 transition-all scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</a>
+<!-- My Gigs -->
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-inter text-[10px] font-semibold mt-1">My Gigs</span>
+</a>
+<!-- Chats -->
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-inter text-[10px] font-semibold mt-1">Chats</span>
+</a>
+<!-- Wallet -->
+<a class="flex flex-col items-center justify-center text-slate-400 p-3 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-inter text-[10px] font-semibold mt-1">Wallet</span>
+</a>
+</nav>
+</body></html>

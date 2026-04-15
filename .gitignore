@@ -1,0 +1,45 @@
+# LOKAL monorepo .gitignore
+
+# ── Secrets (anything matching — keep .env.example committable) ──
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+
+# ── Python ──────────────────────────────────────────────────────
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.venv/
+**/venv/
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+
+# ── Flutter ─────────────────────────────────────────────────────
+app/.dart_tool/
+app/build/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/ios/Pods/
+app/ios/.symlinks/
+app/ios/Flutter/Generated.xcconfig
+app/ios/Flutter/flutter_export_environment.sh
+app/android/.gradle/
+app/android/local.properties
+app/android/key.properties
+
+# ── IDE ─────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+*.swp
+
+# ── OS ──────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Temp artifacts ──────────────────────────────────────────────
+*.log
+*.tmp
