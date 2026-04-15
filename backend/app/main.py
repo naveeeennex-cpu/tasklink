@@ -31,9 +31,14 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
+    # CORS — permissive by default so the Flutter app + any browser
+    # test can hit the deployed backend without friction. Lock this
+    # down to specific origins before shipping to production.
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.cors_origins_list,
+        allow_origins=settings.cors_origins_list
+        if settings.app_env == "production"
+        else ["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
